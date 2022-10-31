@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "semester-projekt-d86d8": {
+      "hosting": {
+        "Semester.Projekt.3rd": [
+          "semester-projekt-d86d8"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "semester-projekt-d86d8"
+  }
+}
