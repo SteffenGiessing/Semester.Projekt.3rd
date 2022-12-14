@@ -23,39 +23,56 @@ import { provideRemoteConfig,getRemoteConfig } from '@angular/fire/remote-config
 import { provideStorage,getStorage } from '@angular/fire/storage';
 import {AngularFireModule} from "@angular/fire/compat";
 import {AngularFirestoreModule} from "@angular/fire/compat/firestore";
+import { AngularFireAuthModule } from '@angular/fire/compat/auth';
+import { SignInComponent } from './sign-in/sign-in.component';
+import { SignUpComponent } from './sign-up/sign-up.component';
+import {AuthenticationService} from "./shared/services/authentication.service";
+import {RouterLinkWithHref, RouterModule, Routes} from "@angular/router";
+
+const routes: Routes = [
+  { path: 'sign-in', component: SignInComponent },
+  { path: 'sign-up', component: SignUpComponent },
+];
+
+
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent, SignInComponent, SignUpComponent
   ],
-  imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    MatToolbarModule,
-    MatIconModule,
-    MatCardModule,
-    DragDropModule,
-    MatButtonModule,
-    MatDialogModule,
-    MatInputModule,
-    FormsModule,
-    AngularFireModule.initializeApp(environment.firebase),
+    imports: [
+      RouterModule.forRoot(
+        routes,
+        { enableTracing: true } // <-- debugging purposes only
+      ),
 
-    provideFirebaseApp(() => initializeApp(environment.firebase)),
-    provideAnalytics(() => getAnalytics()),
-    provideAuth(() => getAuth()),
-    provideDatabase(() => getDatabase()),
-    provideFirestore(() => getFirestore()),
-    provideFunctions(() => getFunctions()),
-    provideMessaging(() => getMessaging()),
-    providePerformance(() => getPerformance()),
-    provideRemoteConfig(() => getRemoteConfig()),
-    provideStorage(() => getStorage()),
-    AngularFirestoreModule
+        BrowserModule,
+        BrowserAnimationsModule,
+        MatToolbarModule,
+        MatIconModule,
+        MatCardModule,
+        DragDropModule,
+        MatButtonModule,
+        MatDialogModule,
+        MatInputModule,
+        FormsModule,
+        AngularFireModule.initializeApp(environment.firebase),
 
-  ],
+        provideFirebaseApp(() => initializeApp(environment.firebase)),
+        provideAnalytics(() => getAnalytics()),
+        provideAuth(() => getAuth()),
+        provideDatabase(() => getDatabase()),
+        provideFirestore(() => getFirestore()),
+        provideFunctions(() => getFunctions()),
+        provideMessaging(() => getMessaging()),
+        providePerformance(() => getPerformance()),
+        provideRemoteConfig(() => getRemoteConfig()),
+        provideStorage(() => getStorage()),
+        AngularFirestoreModule,
+
+    ],
   providers: [
-    ScreenTrackingService,UserTrackingService
+    ScreenTrackingService,UserTrackingService,AuthenticationService
   ],
   bootstrap: [AppComponent]
 })
