@@ -1,8 +1,9 @@
-import {Component, ElementRef, ViewChild} from '@angular/core';
-import {MatDialog} from '@angular/material/dialog';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {AngularFirestore} from "@angular/fire/compat/firestore";
-import {Router} from '@angular/router'
 import {User} from './shared/services/User';
+import {Sources} from './shared/services/Sources';
+import {Observable, Subject} from 'rxjs';
+import {combineLatest} from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -10,10 +11,13 @@ import {User} from './shared/services/User';
   styleUrls: ['./app.component.css']
 })
 
-export class AppComponent {
-  constructor(private store: AngularFirestore, private router: Router, public user: User) {
+export class AppComponent implements OnInit {
+  constructor(private store: AngularFirestore, public user: User, public sources: Sources) {
   }
 
+  searchTerm: any;
+  jsonObject: Object | undefined;
+  arrayOfChange: any = [];
   uid: any;
   title: any;
   phoneNumber: any;
@@ -22,10 +26,14 @@ export class AppComponent {
   name: any;
   personalInfo: any;
 
+  startAt = new Subject();
+  endAt = new Subject();
+  startObs = this.startAt.asObservable();
+  endObs = this.endAt.asObservable();
+
   delete(id: string) {
     this.store.collection('list').doc(id).delete();
   }
-
 
   @ViewChild('EditbtnShow')
   EditbtnShow!: ElementRef;
@@ -44,8 +52,29 @@ export class AppComponent {
   editObj: any;
   dataSource: any;
 
+  foundSources: any;
+  showTitle: any;
+
   ngOnInit() {
     this.getAll();
+    combineLatest(this.startObs, this.endObs).subscribe((value) => {
+      this.firequery(value[0], value[1]).subscribe((foundSource: any) => {
+        this.foundSources = foundSource;
+      })
+    })
+  }
+
+  firequery(start: any, end: any) {
+    return this.store.collection('userInfo', ref =>
+      ref.limit(5000).orderBy('title').startAt(start).endAt(end)).valueChanges();
+  }
+
+  search($event: any) {
+    let searchVal = $event.target.value;
+    this.startAt.next(searchVal);
+    //SearchVal + whatever follows that (Pattern Matching)
+    this.endAt.next(searchVal + "\uf8ff")
+
   }
 
   clearEdit() {
@@ -77,6 +106,10 @@ export class AppComponent {
   }
 
   getOneSource(id: string, title: string, phoneNumber: string, email: string, note: string, personalinfo: string) {
+    this.sources.title = title
+    this.sources.phoneNumber = phoneNumber
+    this.sources.email = email
+    this.sources.note = note
     this.uid = id
     this.title = title
     this.phoneNumber = phoneNumber
@@ -86,13 +119,20 @@ export class AppComponent {
   }
 
   edit(id: string, title: string, phoneNumber: string, email: string, note: string, personalinfo: string) {
+    console.log(this.sources.title, " NÆSTE TITLE ", title)
+    if (this.sources.title != title) {
+      this.jsonObject = {title: title}
+      console.log("happening")
+    }
+    this.jsonObject = <JSON>this.arrayOfChange;
 
     this.store.collection('userInfo').doc(id).update({
-      title: title,
-      phoneNumber: phoneNumber,
-      email: email,
-      note: note
-    }).then(r => console.log("User have been updated"));
+        title: title,
+        phoneNumber: phoneNumber,
+        email: email,
+        note: note
+      }
+    ).then(r => console.log("User have been updated"));
     this.store.collection('sourcesHistory').add({
       title: this.title,
       phoneNumber: this.phoneNumber,
@@ -102,12 +142,12 @@ export class AppComponent {
       uid: this.user.uid,
       docUid: id
     }).then(result =>
-
       console.log("Added: ", this.user.email)
     );
     this.closeDialog();
-
   }
+
+
 }
 
 
