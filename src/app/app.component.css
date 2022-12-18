@@ -2,6 +2,66 @@
   margin: 100px;
 }
 
+.material-symbols-outlined-add {
+  font-family: 'Material Icons', sans-serif;
+  font-weight: normal;
+  font-style: normal;
+  font-size: 50px;
+  float: right;
+  margin-top: 1px;
+  margin-right: 2px;
+  top:0;
+  right:0;
+  font-variation-settings:
+    'FILL' 50,
+    'wght' 600,
+    'GRAD' 100,
+    'opsz' 100
+}
+
+.material-symbols-outlined-home {
+  font-family: 'Material Icons', sans-serif;
+  font-weight: normal;
+  font-style: normal;
+  font-size: 50px;
+  font-variation-settings:
+    'FILL' 50,
+    'wght' 600,
+    'GRAD' 100,
+    'opsz' 100
+}
+.material-symbols-outlined-login {
+  font-family: 'Material Icons', sans-serif;
+  font-weight: normal;
+  font-style: normal;
+  font-size: 50px;
+  align-content: center;
+  font-variation-settings:
+    'FILL' 50,
+    'wght' 600,
+    'GRAD' 100,
+    'opsz' 100
+}
+
+.searchField {
+  width: 300px;
+  height: 50px;
+  border:1px solid black;
+  text-align: center;
+  align-items: center;
+  margin: auto;
+  display: block;
+}
+
+.displayText {
+  text-align: center;
+  font-weight: normal;
+  font-style: italic;
+  align-content: center;
+  margin-bottom: 300px;
+  margin-top: 5px;
+}
+
 .main{
   padding: 1.5rem;
   border: 1px solid #dee2e6;

@@ -4,17 +4,22 @@ import {User} from './shared/services/User';
 import {Sources} from './shared/services/Sources';
 import {Observable, Subject} from 'rxjs';
 import {combineLatest} from 'rxjs';
+import {Routes} from "@angular/router";
+import {SignInComponent} from "./sign-in/sign-in.component";
+import {SignUpComponent} from "./sign-up/sign-up.component";
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-
+// const appRoutes: Routes =  [
+//   {path: 'sign-in', component:  SignInComponent},
+//   {path: 'sign-up', component: SignUpComponent}
+// ]
 export class AppComponent implements OnInit {
   constructor(private store: AngularFirestore, public user: User, public sources: Sources) {
   }
-
   searchTerm: any;
   jsonObject: Object | undefined;
   arrayOfChange: any = [];
@@ -25,7 +30,6 @@ export class AppComponent implements OnInit {
   note: any;
   name: any;
   personalInfo: any;
-
   startAt = new Subject();
   endAt = new Subject();
   startObs = this.startAt.asObservable();
@@ -40,6 +44,7 @@ export class AppComponent implements OnInit {
 
   @ViewChild('btnClose')
   btnClose!: ElementRef;
+
 
   openDialog() {
     this.EditbtnShow.nativeElement.click();
@@ -146,8 +151,9 @@ export class AppComponent implements OnInit {
     );
     this.closeDialog();
   }
+  flushUser(){
 
-
+  }
 }
 
 
