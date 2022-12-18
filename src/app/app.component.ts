@@ -1,24 +1,23 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {Component, ElementRef, NgModule, OnInit, ViewChild} from '@angular/core';
 import {AngularFirestore} from "@angular/fire/compat/firestore";
 import {User} from './shared/services/User';
 import {Sources} from './shared/services/Sources';
 import {Observable, Subject} from 'rxjs';
 import {combineLatest} from 'rxjs';
-import {Routes} from "@angular/router";
+import {RouterModule, Routes} from "@angular/router";
 import {SignInComponent} from "./sign-in/sign-in.component";
 import {SignUpComponent} from "./sign-up/sign-up.component";
+import {FrontPageComponent} from "./front-page/front-page.component";
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-// const appRoutes: Routes =  [
-//   {path: 'sign-in', component:  SignInComponent},
-//   {path: 'sign-up', component: SignUpComponent}
-// ]
+
 export class AppComponent implements OnInit {
   constructor(private store: AngularFirestore, public user: User, public sources: Sources) {
+    console.log("Frontpage: ", user.displayName)
   }
   searchTerm: any;
   jsonObject: Object | undefined;

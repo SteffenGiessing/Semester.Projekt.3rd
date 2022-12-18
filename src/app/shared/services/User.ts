@@ -26,6 +26,7 @@ export class User {
 
   set displayName(value: string) {
     this._displayName = value;
+    console.log("SETTER: ", this._displayName)
   }
 
   private _uid: string = "";

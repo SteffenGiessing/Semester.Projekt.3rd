@@ -28,17 +28,18 @@ import { SignInComponent } from './sign-in/sign-in.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import {AuthenticationService} from "./shared/services/authentication.service";
 import {RouterLinkWithHref, RouterModule, Routes} from "@angular/router";
+import { FrontPageComponent } from './front-page/front-page.component';
+
 
 const routes: Routes = [
-  { path: 'sign-in', component: SignInComponent },
+  { path: '', component: SignInComponent },
   { path: 'sign-up', component: SignUpComponent },
+  { path: 'front-page', component: FrontPageComponent}
 ];
-
-
 
 @NgModule({
   declarations: [
-    AppComponent, SignInComponent, SignUpComponent
+    AppComponent, SignInComponent, SignUpComponent, FrontPageComponent
   ],
     imports: [
       RouterModule.forRoot(
