@@ -1,0 +1,40 @@
+<div class="container-sign-up">
+  <h3 class="header">Sign Up</h3>
+  <div class="formGroup">
+    <input
+      type="text"
+      class="formControl"
+      placeholder="Displayname"
+      #displayName
+      required
+    />
+  </div>
+  <div class="child1">
+    <input
+      type="text"
+      class="formControl"
+      placeholder="Username"
+      #email
+      required
+    />
+  </div>
+  <div class="formGroup">
+    <input
+      type="password"
+      class="formControl"
+      placeholder="Password"
+      #password
+      required
+    />
+  </div>
+  <div class="btn-signUp">
+    <input
+      type="button"
+      class="btn btnPrimary"
+      value="Create Account"
+      (click)="
+          SignUp(email.value, password.value, displayName.value)
+        "
+    />
+  </div>
+</div>

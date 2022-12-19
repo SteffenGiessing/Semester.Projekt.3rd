@@ -1,0 +1,52 @@
+.container-sign-in{
+  text-align: center;
+  align-items: center;
+  top: 50%;
+  left: 50%;
+  right: 50%;
+  bottom: 50%;
+  margin-top: 100px;
+
+}
+.formGroup {
+  color: blueviolet;
+  width: 2000px;
+}
+.tjekfarve {
+  font-style: italic;
+}
+.header {
+  text-align: center;
+  align-items: center;
+}
+.child1 {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.btn-signUp {
+  width: 200px;
+  height: 40px;
+  border:1px solid black;
+  text-align: center;
+  align-items: center;
+  margin: auto;
+  display: block;
+  font-weight: normal;
+  font-style: italic;
+  align-content: center;
+
+}
+.btn-signIn {
+  width: 200px;
+  height: 40px;
+  border:1px solid black;
+  text-align: center;
+  align-items: center;
+  margin: auto;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  display: block;
+  font-weight: normal;
+  font-style: italic;
+  align-content: center;
+}

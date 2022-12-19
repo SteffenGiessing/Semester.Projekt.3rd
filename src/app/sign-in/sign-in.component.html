@@ -1,0 +1,38 @@
+<div class="container-sign-in">
+  <h3 class="header">Sign In</h3>
+  <div class="child1">
+    <input
+      type="text"
+      class="formControl"
+      placeholder="Username"
+      #email
+      required
+    />
+  </div>
+  <div class="child">
+    <input
+      type="password"
+      class="formControl"
+      placeholder="Password"
+      #password
+      required
+    />
+  </div>
+  <div class="btn-signIn">
+    <input
+      type="button"
+      class="btn btnPrimary"
+      value="Sign In"
+      (click)="SignIn(email.value, password.value)"
+    />
+  </div>
+  <div class="btn-signUp">
+    <input
+      type="button"
+      class="btn btnPrimary"
+      value="Sign Up"
+      routerLink="sign-up"
+    />
+  </div>
+</div>
+<router-outlet></router-outlet>
